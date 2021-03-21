@@ -123,7 +123,7 @@
     Con respecto a las mantenciones voy a suponer que es solo para guardar el historial de lkas mantenciones por vehículo, por lo que solo se podrá ingresar mantenciones, y no modificarlas ni editarlas.
 	
 ## GIT Repository
-	https://gitlab.com/matiascarreno/nisum-test
+	https://github.com/DonEste/Test-MyHotel-App1
 
 ## comentarios
 	Generalmente todo lo que respecta al código y la documentación es en ingles, pero en este caso ya que las entidades tenían nombres en español, hice algunas partes en español para mantener los nombres y que no quede tan extraño tener solo esos nombres en español
