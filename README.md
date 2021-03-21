@@ -7,6 +7,9 @@
 ## ejecutar el proyecto
 	
 	java -jar target/test-myhotel-0.0.1-SNAPSHOT.jar
+
+## BD:
+    Se debe configurar la conexión a alguna BD MySQL para que se creen las tablas necesarias, que en este caso son la tabla vehiculos y la tabla mantenciones
 	
 ## Los endpint son los siguientes:
 
