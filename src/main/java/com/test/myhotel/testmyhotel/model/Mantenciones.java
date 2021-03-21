@@ -8,13 +8,6 @@ import javax.persistence.Id;
 
 import org.hibernate.annotations.Table;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(appliesTo = "mantenciones")
 public class Mantenciones {
@@ -24,4 +17,40 @@ public class Mantenciones {
 	private int id;
 	private int vehiculo;
 	private Timestamp fecha;
+
+	public Mantenciones() {
+
+	}
+
+	public Mantenciones(int id, int vehiculo, Timestamp fecha) {
+		super();
+		this.id = id;
+		this.vehiculo = vehiculo;
+		this.fecha = fecha;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getVehiculo() {
+		return vehiculo;
+	}
+
+	public void setVehiculo(int vehiculo) {
+		this.vehiculo = vehiculo;
+	}
+
+	public Timestamp getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(Timestamp fecha) {
+		this.fecha = fecha;
+	}
+
 }
