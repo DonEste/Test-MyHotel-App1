@@ -1,12 +1,15 @@
 package com.test.myhotel.testmyhotel.model;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-
+import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -17,7 +20,6 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "tipoVehiculo")
 @JsonSubTypes({ @Type(value = Automovil.class, name = "automovil"), @Type(value = Camion.class, name = "camion") })
 public abstract class Vehiculo {
-
 	@Id
 	@GeneratedValue
 	private int id;
@@ -27,6 +29,8 @@ public abstract class Vehiculo {
 	private int año;
 	private int kilometraje;
 	private int cilindrada;
+	@OneToMany(mappedBy = "vehiculo", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Mantencion> mantenciones = new ArrayList<>();
 
 	public abstract void fill(Vehiculo vehiculo);
 
@@ -35,7 +39,6 @@ public abstract class Vehiculo {
 	}
 
 	public Vehiculo(int id, String marca, String modelo, String patente, int año, int kilometraje, int cilindrada) {
-		super();
 		this.id = id;
 		this.marca = marca;
 		this.modelo = modelo;
@@ -113,6 +116,14 @@ public abstract class Vehiculo {
 
 	public void setCilindrada(int cilindrada) {
 		this.cilindrada = cilindrada;
+	}
+
+	public List<Mantencion> getMantenciones() {
+		return mantenciones;
+	}
+
+	public void setMantenciones(List<Mantencion> mantenciones) {
+		this.mantenciones = mantenciones;
 	}
 
 }

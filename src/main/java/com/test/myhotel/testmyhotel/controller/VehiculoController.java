@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.test.myhotel.testmyhotel.model.Mantencion;
 import com.test.myhotel.testmyhotel.model.Vehiculo;
 import com.test.myhotel.testmyhotel.service.VehiculoService;
 
@@ -48,6 +49,11 @@ public class VehiculoController {
     @DeleteMapping("/delete/{id}")
     public String deleteVehiculo(@PathVariable int id) {
         return service.deleteVehiculo(id);
+    }
+
+    @PostMapping("/addMantencion")
+    public Mantencion deleteVehiculo(@RequestBody Mantencion mantencion) {
+        return service.addMantencionVehiculo(mantencion);
     }
 
 }

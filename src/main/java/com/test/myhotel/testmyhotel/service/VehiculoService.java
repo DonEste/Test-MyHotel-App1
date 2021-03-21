@@ -4,10 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.test.myhotel.testmyhotel.model.Automovil;
-import com.test.myhotel.testmyhotel.model.Camion;
+import com.test.myhotel.testmyhotel.model.Mantencion;
 import com.test.myhotel.testmyhotel.model.Vehiculo;
 import com.test.myhotel.testmyhotel.repository.AutomovilRepository;
-import com.test.myhotel.testmyhotel.repository.CamionRepository;
+import com.test.myhotel.testmyhotel.repository.MantencionRepository;
 
 import java.util.List;
 
@@ -15,6 +15,9 @@ import java.util.List;
 public class VehiculoService {
 	@Autowired
 	private AutomovilRepository repository;
+
+	@Autowired
+	private MantencionRepository mantencionRepository;
 
 	public Vehiculo saveVehiculo(Vehiculo vehiculo) {
 		if (vehiculo instanceof Automovil) {
@@ -59,6 +62,10 @@ public class VehiculoService {
 		Vehiculo vehiculoGuardado = repository.findById(vehiculo.getId()).orElse(null);
 		vehiculoGuardado.fill(vehiculo);
 		return repository.save(vehiculoGuardado);
+	}
+
+	public Mantencion addMantencionVehiculo(Mantencion mantencion) {
+		return mantencionRepository.save(mantencion);
 	}
 
 }

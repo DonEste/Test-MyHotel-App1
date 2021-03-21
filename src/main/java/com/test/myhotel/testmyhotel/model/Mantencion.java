@@ -5,25 +5,29 @@ import java.sql.Timestamp;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
-import org.hibernate.annotations.Table;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
-@Table(appliesTo = "mantenciones")
-public class Mantenciones {
+public class Mantencion {
 
 	@Id
 	@GeneratedValue
 	private int id;
-	private int vehiculo;
+	@ManyToOne
+    @JoinColumn(name = "vehiculo_id")
+	@JsonBackReference
+	private Vehiculo vehiculo;
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
 	private Timestamp fecha;
 
-	public Mantenciones() {
+	public Mantencion() {
 
 	}
 
-	public Mantenciones(int id, int vehiculo, Timestamp fecha) {
-		super();
+	public Mantencion(int id, Vehiculo vehiculo, Timestamp fecha) {
 		this.id = id;
 		this.vehiculo = vehiculo;
 		this.fecha = fecha;
@@ -37,11 +41,11 @@ public class Mantenciones {
 		this.id = id;
 	}
 
-	public int getVehiculo() {
+	public Vehiculo getVehiculo() {
 		return vehiculo;
 	}
 
-	public void setVehiculo(int vehiculo) {
+	public void setVehiculo(Vehiculo vehiculo) {
 		this.vehiculo = vehiculo;
 	}
 
