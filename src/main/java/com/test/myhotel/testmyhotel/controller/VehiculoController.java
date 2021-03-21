@@ -1,5 +1,7 @@
 package com.test.myhotel.testmyhotel.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +15,6 @@ import com.test.myhotel.testmyhotel.model.Mantencion;
 import com.test.myhotel.testmyhotel.model.Vehiculo;
 import com.test.myhotel.testmyhotel.service.VehiculoService;
 
-import java.util.List;
 
 @RestController
 public class VehiculoController {
@@ -21,12 +22,12 @@ public class VehiculoController {
 	@Autowired
 	private VehiculoService service;
 	
-	@PostMapping("/addVehiculo")
+	@PostMapping("/vehiculo")
     public Vehiculo addVehiculo(@RequestBody Vehiculo vehiculo) {
         return service.saveVehiculo(vehiculo);
     }
 
-    @PostMapping("/addVehiculos")
+    @PostMapping("/vehiculos")
     public List<Vehiculo> addVehiculos(@RequestBody List<Vehiculo> vehiculos) {
         return service.saveVehiculos(vehiculos);
     }
@@ -36,17 +37,17 @@ public class VehiculoController {
         return service.getVehiculos();
     }
 
-    @GetMapping("/vehiculoById/{id}")
+    @GetMapping("/vehiculo/{id}")
     public Vehiculo findVehiculoById(@PathVariable int id) {
         return service.getVehiculoById(id);
     }
 
-    @PutMapping("/update")
+    @PutMapping("/vehiculo")
     public Vehiculo updateVehiculo(@RequestBody Vehiculo vehiculo) {
         return service.updateVehiculo(vehiculo);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/vehiculo/{id}")
     public String deleteVehiculo(@PathVariable int id) {
         return service.deleteVehiculo(id);
     }
