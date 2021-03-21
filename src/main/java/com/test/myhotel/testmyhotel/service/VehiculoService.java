@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 public class VehiculoService {
 	@Autowired
-	private AutomovilRepository repository;
+	private AutomovilRepository vehiculoRepository;
 
 	@Autowired
 	private MantencionRepository mantencionRepository;
@@ -25,7 +25,7 @@ public class VehiculoService {
 		} else {
 			System.out.println("Es un camion?: ");
 		}
-		return repository.save(vehiculo);
+		return vehiculoRepository.save(vehiculo);
 	}
 
 	public List<Vehiculo> saveVehiculos(List<Vehiculo> vehiculos) {
@@ -37,19 +37,19 @@ public class VehiculoService {
 				System.out.println("Es un camion?: ");
 			}
 		}
-		return repository.saveAll(vehiculos);
+		return vehiculoRepository.saveAll(vehiculos);
 	}
 
 	public List<Vehiculo> getVehiculos() {
-		return repository.findAll();
+		return vehiculoRepository.findAll();
 	}
 
 	public Vehiculo getVehiculoById(int id) {
-		return repository.findById(id).orElse(null);
+		return vehiculoRepository.findById(id).orElse(null);
 	}
 
 	public String deleteVehiculo(int id) {
-		repository.deleteById(id);
+		vehiculoRepository.deleteById(id);
 		return "Vehiculo removido: " + id;
 	}
 
@@ -59,9 +59,9 @@ public class VehiculoService {
 		} else {
 			System.out.println("Es un camion?: ");
 		}
-		Vehiculo vehiculoGuardado = repository.findById(vehiculo.getId()).orElse(null);
+		Vehiculo vehiculoGuardado = vehiculoRepository.findById(vehiculo.getId()).orElse(null);
 		vehiculoGuardado.fill(vehiculo);
-		return repository.save(vehiculoGuardado);
+		return vehiculoRepository.save(vehiculoGuardado);
 	}
 
 	public Mantencion addMantencionVehiculo(Mantencion mantencion) {
