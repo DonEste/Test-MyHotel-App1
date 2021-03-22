@@ -10,6 +10,11 @@
 
 ## BD:
     Se debe configurar la conexión a alguna BD MySQL para que se creen las tablas necesarias, que en este caso son la tabla vehiculos y la tabla mantenciones
+    Estas tablas las creará Hybernate, solamante es necesario tener una conexión a un schema válido
+
+## Estructura del proyecto
+    Es la estrctura estándar de Spring Boot, con los paquetes controller, service, model y repository.
+    Solo es necesario tener un JRE o JDK instalado, preferentemente la versión 11
 	
 ## Los endpint son los siguientes:
 
@@ -19,7 +24,8 @@
 	Buscar un vehículo por ID (GET)
 		http://localhost:8080/vehiculo/{id}
 
-	Insertar un vehículo (POST)
+	Insertar un vehículo (POST) - Puede recibir tanto automoviles como camiones con la estructura que se especificó en las instrucciones
+    Todos excepto el campo "tipoVehiculo" son opcionales
 		http://localhost:8080/vehiculo/
 			Body:
 			{
@@ -35,7 +41,8 @@
                 "cantidadEjes": 2
             }
 
-    Insertar un listado de vehiculos
+    Insertar un listado de vehiculos - Puede recibir tanto automoviles como camiones con la estructura que se especificó en las instrucciones
+    Todos excepto el campo "tipoVehiculo" son opcionales
         http://localhost:8080/vehiculos/
             Body:
             [
@@ -79,7 +86,8 @@
                 }
             ]   
 
-	Actualizar un vehiculo (PUT)
+	Actualizar un vehiculo (PUT) - Puede recibir tanto automoviles como camiones con la estructura que se especificó en las instrucciones
+    El id es obligatorio para actualizar el registro
 		http://localhost:8080/persona/
 			Body:
 			{
@@ -100,7 +108,7 @@
 	Eliminar un vehiculo (DELETE)
 		http://localhost:8080/vehiculo/{id}
 
-    Agregar una mantención (DELETE)
+    Agregar una mantención (POST) - Es necesario el objeto de el vehículo que se asociará con la mantención, este al igual que los demás endpoin puede recibir un camion o un automovil
 		http://localhost:8080/mantencion/{id}
             Body
             {
@@ -121,6 +129,11 @@
                 "fecha": "03-03-2021"
             }
     Con respecto a las mantenciones voy a suponer que es solo para guardar el historial de lkas mantenciones por vehículo, por lo que solo se podrá ingresar mantenciones, y no modificarlas ni editarlas.
+
+    Los objetos JSON en cada endpoint deberían funcionar perfectamente para hacer pruebas
+
+## Manejo de errores
+    Para este caso no me pareció necesario agregar un manejo de errores más detallado, ya qu los errores arrojados por defecto son suficientemente descriptivos
 	
 ## GIT Repository
 	https://github.com/DonEste/Test-MyHotel-App1
